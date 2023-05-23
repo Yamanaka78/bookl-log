@@ -55,12 +55,14 @@ while (true) {
 
         echo '登録が完了しました' . PHP_EOL . PHP_EOL;
     } elseif ($num === '2') {
-        echo '登録されている読書ログを表示します' . PHP_EOL;
-        echo '書籍名：' . $title . PHP_EOL;
-        echo '著者名：' . $author . PHP_EOL;
-        echo '読書状況：' . $status . PHP_EOL;
-        echo '評価：' . $score . PHP_EOL;
-        echo '感想：' . $summary . PHP_EOL;
+        foreach ($reviews as $review) {
+            echo '書籍名：' . $review['title'] . PHP_EOL;
+            echo '著者名：' . $review['author'] . PHP_EOL;
+            echo '読書状況：' . $review['status'] . PHP_EOL;
+            echo '評価：' . $review['score'] . PHP_EOL;
+            echo '感想：' . $review['summary'] . PHP_EOL;
+            echo '-------------' . PHP_EOL;
+        }
     } elseif ($num === '9') {
         break;
     }
@@ -75,4 +77,3 @@ while (true) {
  * 番号9を選択してアプリケーションを終了すると、登録済みの読書ログが表示される
  * 処理を書く場所はここじゃなくてもいいが、削除するときに発見しやすいので末尾に記載した
  */
-var_export($reviews);
