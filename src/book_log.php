@@ -33,6 +33,19 @@ function createReview()
         'summary' => $summary,
     ];
 }
+
+function listReview($reviews)
+{
+    foreach ($reviews as $review) {
+        echo '書籍名：' . $review['title'] . PHP_EOL;
+        echo '著者名：' . $review['author'] . PHP_EOL;
+        echo '読書状況：' . $review['status'] . PHP_EOL;
+        echo '評価：' . $review['score'] . PHP_EOL;
+        echo '感想：' . $review['summary'] . PHP_EOL;
+        echo '-------------' . PHP_EOL;
+    }
+}
+
 $reviews = [];
 
 while (true) {
@@ -45,14 +58,7 @@ while (true) {
     if ($num === '1') {
         $reviews[] = createReview();
     } elseif ($num === '2') {
-        foreach ($reviews as $review) {
-            echo '書籍名：' . $review['title'] . PHP_EOL;
-            echo '著者名：' . $review['author'] . PHP_EOL;
-            echo '読書状況：' . $review['status'] . PHP_EOL;
-            echo '評価：' . $review['score'] . PHP_EOL;
-            echo '感想：' . $review['summary'] . PHP_EOL;
-            echo '-------------' . PHP_EOL;
-        }
+        listReview($reviews);
     } elseif ($num === '9') {
         break;
     }
