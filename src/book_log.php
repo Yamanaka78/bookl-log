@@ -1,18 +1,38 @@
 <?php
 
-$title = '';
-$author = '';
-$status = '';
-$score = '';
-$summary = '';
+function createReview()
+{
+    echo '読書ログを登録してください' . PHP_EOL;
+    echo '書籍名：';
+    $title = trim(fgets(STDIN));
 
-/**
- * ここを追記
- *
- * 読書ログを格納するための配列をループのその側で用意する
- * ループの中で変数を宣言すると、ループが回るたびに初期化されてしまう
- * 読書ログというのは要はレビューなので、$reviews と命名
- */
+    echo '著者名：';
+    $author = trim(fgets(STDIN));
+
+    echo '読書状況（未読,読んでる,読了）：';
+    $status = trim(fgets(STDIN));
+
+    echo '評価（5点満点の整数）：';
+    $score = trim(fgets(STDIN));
+
+    echo '感想：';
+    $summary = trim(fgets(STDIN));
+
+    /**
+     * ここを追記
+     *
+     * $reviews に読書ログ単体の連想配列を追加する
+     * 配列にしてもよいが、連想配列のほうがラベルが付いているので要素にアクセスするときによりわかりやすい
+     */
+    echo '登録が完了しました' . PHP_EOL . PHP_EOL;
+    return  [
+        'title' => $title,
+        'author' => $author,
+        'status' => $status,
+        'score' => $score,
+        'summary' => $summary,
+    ];
+}
 $reviews = [];
 
 while (true) {
@@ -23,37 +43,7 @@ while (true) {
     $num = trim(fgets(STDIN));
 
     if ($num === '1') {
-        echo '読書ログを登録してください' . PHP_EOL;
-        echo '書籍名：';
-        $title = trim(fgets(STDIN));
-
-        echo '著者名：';
-        $author = trim(fgets(STDIN));
-
-        echo '読書状況（未読,読んでる,読了）：';
-        $status = trim(fgets(STDIN));
-
-        echo '評価（5点満点の整数）：';
-        $score = trim(fgets(STDIN));
-
-        echo '感想：';
-        $summary = trim(fgets(STDIN));
-
-        /**
-         * ここを追記
-         *
-         * $reviews に読書ログ単体の連想配列を追加する
-         * 配列にしてもよいが、連想配列のほうがラベルが付いているので要素にアクセスするときによりわかりやすい
-         */
-        $reviews[] = [
-            'title' => $title,
-            'author' => $author,
-            'status' => $status,
-            'score' => $score,
-            'summary' => $summary,
-        ];
-
-        echo '登録が完了しました' . PHP_EOL . PHP_EOL;
+        $reviews[] = createReview();
     } elseif ($num === '2') {
         foreach ($reviews as $review) {
             echo '書籍名：' . $review['title'] . PHP_EOL;
