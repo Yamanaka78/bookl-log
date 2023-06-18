@@ -1,0 +1,9 @@
+CREATE TABLE book_log (
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    book_name VARCHAR(255),
+    author_name VARCHAR(255),
+    reading_situation VARCHAR(255),
+    evaluation INTEGER,
+    thoughts VARCHAR(255),
+    creation_date TIMESTAMP
+) DEFAULT CHARACTER SET=utf8mb4;
