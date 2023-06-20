@@ -39,5 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // //データベースにデータを登録する
   createCompany($link, $company);
   // //データベースとの接続を切断する
-  // mysqli_close($link);
+  mysqli_close($link);
 }
+
+header("Location: index.php");
