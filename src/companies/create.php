@@ -33,6 +33,21 @@ function validate($company)
   } elseif (strlen($company['name']) > 255) {
     $errors['name'] = '会社名は255文字以内で入力してください';
   }
+
+  $dates = explode('-', $company['establishment_date']);
+  if (!strlen($company['establishment_date'])){
+    $errors['establishment_date'] = '設立日を入力してください';
+  }elseif(count($dates) === 3){
+    $error['establishment_date'] = '設立日を正しい日付で入力してください';
+  }elseif(!checkdate($dates[1], $dates[2], $dates[0])){
+    $error['establishment_date'] = '設立日を正しい日付で入力してください';
+  }
+  if (!strlen($company['founder'])) {
+    $errors['name'] = '代表者名を入力してください';
+  } elseif (strlen($company['founder']) > 100) {
+    $errors['name'] = '代表者名は100文字以内で入力してください';
+  }
+
   return $errors;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -91,4 +106,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
-
